@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block main %}
+<article class="module width_quarter">
+	<header><h3>Status Server</h3></header>
+        <table class="tablesorter" cellspacing="0"> 
+			<thead> 
+				<tr> 
+                                <th>Items</th> 
+    				<th>Value</th> 
+				</tr> 
+			</thead> 
+			<tbody>
+				<tr> 
+                                    <td>Jumlah Unduhan Selesai</td>
+    				    <td>{{ stats.numStopped }}</td> 
+    				</tr>
+                                <tr> 
+                                    <td>Jumlah Unduhan Tertunda</td>
+    				    <td>{{ stats.numWaiting }}</td> 
+    				</tr>
+                                <tr> 
+                                    <td>Jumlah Unduhan Berjalan</td>
+    				    <td>{{ stats.numActive }}</td> 
+    				</tr>
+                                <tr> 
+                                    <td>Total Kecepatan Unduh</td>
+    				    <td>{{ stats.downloadSpeed|filesizeformat }}/s</td> 
+    				</tr> 
+			</tbody> 
+			</table>
+
+</article>	
+<article class="module width_3_quarter">
+        <header><h3>Tentang Saya</h3></header>
+                <div class="module_content">
+                        <p>Saya adalah sebuah interface web yang bertujuan untuk memanipulasi aplikasi aria2. Dibangun menggunakan Django dan xmlrpclib</p>
+                        <p>Versi alfa ini ditujukan untuk keperluan uji coba saja. Saya belum dapat di gunakan untuk produksi.</p>
+                        <p>Masukan dan saran dapat di kirimkan ke say@bramandityo.com</p>
+                </div>
+</article>
+	
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "base.html"%}
+
+{% block main %}
+                <script type="text/javascript">
+		    
+		     function hapusFile(id,nama){
+			var answer = confirm("Anda yakin akan menghapus file "+nama+"?\n\n File yang telah dihapus tidak dapat dikembalikan lagi !!")
+			  if (answer){
+				window.location = "/download/hapus/"+id;
+		          }
+		     }
+			  
+		     function hentiDownload(id) {
+			 var answer = confirm("Anda yakin akan menghentikan proses Download ?")
+			  if (answer){
+				window.location = "/download/aksi/henti/"+id;
+		          }   
+		     }
+		     
+		     function mulaiDownload(id) {
+			 var answer = confirm("Anda yakin akan memulai proses Download ?")
+			  if (answer){
+				window.location = "/download/aksi/mulai/"+id;
+		          }   
+		     }
+		     
+		     function batalDownload(id) {
+			var answer = confirm("Anda yakin akan membatalkan unduhan ini ?")
+			  if (answer){
+				window.location = "/download/aksi/batal/"+id;
+		          }    
+		     }
+		</script>
+		<article class="module width_full">
+		<header><h3 class="tabs_involved">Sedang Mengunduh</h3></header>
+			<table class="tablesorter" cellspacing="0"> 
+			<thead> 
+				<tr> 
+                                <th>Nama File</th> 
+    				<th>Ukuran Total</th> 
+    				<th>Berhasil Unduh</th> 
+    				<th>Kecepatan Unduh</th> 
+    				<th>Aksi</th> 
+				</tr> 
+			</thead> 
+			<tbody>
+                            {% for file in files %}
+				<tr> 
+                                    <td>{{ file.namafile }}</td>
+    				    <td>{{ file.totalunduh|filesizeformat}}</td> 
+    				    <td>{{ file.berhasilunduh|filesizeformat}}</td> 
+    				    <td>{{ file.kecepatanunduh|filesizeformat}}/s</td>
+				    <td>
+					<input type="image" title="Trash" src="/static/images/icn_logout.png" onclick="hentiDownload('{{ file.gid }}')"></td>
+    				    </tr> 
+			    {% endfor %} 
+			</tbody> 
+			</table>
+                </article>
+	       <article class="module width_full">
+		<header><h3 class="tabs_involved">Unduhan Menungu</h3></header>
+			<table class="tablesorter" cellspacing="0"> 
+			<thead> 
+				<tr> 
+                                <th>Nama File</th> 
+    				<th>Ukuran Total</th> 
+    				<th>Berhasil Unduh</th> 
+    				<th>Aksi</th> 
+				</tr> 
+			</thead> 
+			<tbody>
+                            {% for file in pauses %}
+				<tr> 
+                                    <td>{{ file.namafile }}</td>
+    				    <td>{{ file.totalunduh|filesizeformat}}</td> 
+    				    <td>{{ file.berhasilunduh|filesizeformat}}</td> 
+				    <td>
+					<input type="image" title="Mulai" src="/static/images/icn_jump_back.png" onclick="mulaiDownload('{{ file.gid }}')">
+					<input type="image" title="Mulai" src="/static/images/icn_logout.png" onclick="batalDownload('{{ file.gid }}')">
+				    </td>
+    				    </tr> 
+			    {% endfor %} 
+			</tbody> 
+			</table>
+                </article>
+			<article class="module width_full">
+		        <header><h3 class="tabs_involved">Unduhan Selesai</h3></header>
+			<table class="tablesorter" cellspacing="0"> 
+			<thead> 
+				<tr> 
+    				<th>Unduh File</th> 
+    				<th>Ukuran</th>
+				<th>Aksi</th>
+				</tr> 
+			</thead> 
+			<tbody> 
+				{% for file in stops %}
+				<tr> 
+                                    <td><a href="{{ file.url }}">{{ file.namafile }}</a></td>
+    				    <td>{{ file.totalunduh|filesizeformat}}</td>
+				    <td>{% if file.totalunduh == 0 %}
+					<input type="image" title="Delete" src="/static/images/icn_trash.png" onclick="hapusFile('{{ file.gid }}','{{ file.namafile }}')">{% endif %}
+				    </td>
+				</tr> 
+			    {% endfor %} 
+				
+			</tbody> 
+			</table>
+		</article><!-- end of content manager article -->
+		
+		
+{% endblock %}
