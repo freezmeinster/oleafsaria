@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block main %}
+    {% if messages %}
+        {% for message in messages %}
+        <h4 class="alert_error">{{ message }}</h4>
+        {% endfor %}
+    {% endif %}
 <article class="module width_full">
     <form action="" method="POST">
         {% csrf_token %}

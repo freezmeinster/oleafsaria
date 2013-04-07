@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response, redirect
 from django.conf import settings
 from django.template import RequestContext
 from download.forms import FormDownload
+from django.contrib import messages
 
 def home(request):
     files = []
@@ -78,7 +79,8 @@ def tambah(request):
             try:
                 server.aria2.addUri([url],{'split': split})
             except:
-                pass
+                messages.add_message(request, messages.INFO, 'Url yang anda masukan tidak valid')
+                return redirect("tambah")
             
             return redirect(settings.ARIA_URL_PATH)
     return render_to_response("tambah.html",{
