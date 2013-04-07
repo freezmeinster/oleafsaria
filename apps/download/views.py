@@ -75,7 +75,11 @@ def tambah(request):
             url = data.get("url")
             split = data.get("split")
             server = xmlrpclib.ServerProxy(settings.ARIA_RPC_URL)
-            server.aria2.addUri([url],{'split': split})
+            try:
+                server.aria2.addUri([url],{'split': split})
+            except:
+                pass
+            
             return redirect(settings.ARIA_URL_PATH)
     return render_to_response("tambah.html",{
         "form" : form
