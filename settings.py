@@ -154,6 +154,6 @@ LOGGING = {
 }
 
 ARIA_RPC_URL = "http://bram:pass4bram@103.23.244.131:6800/rpc"
-ARIA_URL_PATH = "http://localhost:8000"
+ARIA_URL_PATH = "http://nitipunduh.kedaiko.de"
 ARIA_REPO_URL = "http://opensource.indoschool.org/nitip/download/"
 ARIA_REPO_PATH = "/home/personal/bram/nitip/download/"
