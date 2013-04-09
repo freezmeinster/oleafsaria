@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nitip Unduh</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="/static/mobile/jquery.mobile-1.3.0.min.css" />
+	<script src="/static/mobile/jquery-1.9.1.min.js"></script>
+	<script src="/static/mobile/jquery.mobile-1.3.0.min.js"></script>
+</head>
+<body>
+
+<div data-role="page" id="beranda">
+
+        {% include "mobile/header.html" %}
+
+	<div data-role="content">
+
+
+	</div><!-- /content -->
+
+	{% include "mobile/footer.html" %}
+</div><!-- /page -->
+
+<div data-role="page" id="tambah">
+
+        {% include "mobile/header.html" %}
+
+	<div data-role="content">
+		<form>
+                    <div data-role="fieldcontain">
+                        <label for="url-1">Url unduhan</label>
+                        <input data-clear-btn="true" name="url" id="url" value="" type="url">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="select-native-17">Unduhan bersamaan</label>
+                        <select name="select-native-17" id="select-native-17">
+                            <option value="5" selected=selected >Lima</option>
+                            <option value="10">Sepuluh</option>
+                            <option value="20">Dua Puluh</option>
+                            <option value="30">Tiga Puluh</option>
+                        </select>                    
+                    </div>
+                    <input type="submit" value="Unduh" data-theme="b"/>
+                </form>
+	</div><!-- /content -->
+
+	{% include "mobile/footer.html" %}
+</div>
+
+<div data-role="page" id="tentang">
+
+	<div data-role="header">
+            {% include "mobile/header.html" %}
+	</div><!-- /header -->
+
+	<div data-role="content">
+	    <table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" >
+         <thead>
+           <tr class="ui-bar-d">
+             <th data-priority="persist">Informasi</th>
+             <th data-priority="1">Angka</th>
+           </tr>
+         </thead>
+         <tbody>
+            <tr> 
+                <td>Unduhan Selesai</td>
+                <td>{{ stats.numStopped }}</td> 
+            </tr>
+            <tr> 
+                <td>Unduhan Tertunda</td>
+                <td>{{ stats.numWaiting }}</td> 
+            </tr>
+            <tr> 
+                <td>Unduhan Berjalan</td>
+                <td>{{ stats.numActive }}</td> 
+            </tr>
+            <tr> 
+                <td>Kecepatan Unduh</td>
+                <td>{{ stats.downloadSpeed|filesizeformat }}/s</td> 
+            </tr> 
+         </tbody>
+       </table>
+	</div><!-- /content -->
+
+	
+	{% include "mobile/footer.html" %}
+</div><!-- /page -->
+
+</body>
+</html>
