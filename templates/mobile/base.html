@@ -14,10 +14,47 @@
 <div data-role="page" id="beranda">
 
         {% include "mobile/header.html" %}
-
+	
 	<div data-role="content">
-
-
+	     <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+		<div data-role="collapsible">
+			<h3>Sedang Berjalan</h3>
+			<ul data-role="listview" data-split-icon="gear" data-split-theme="d" data-inset="true">
+				<li><a href="#">
+					<h2>Broken Bells</h2>
+					<p>Broken Bells</p></a>
+					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+				</li>
+			</ul>
+			<div data-role="popup" id="purchase" data-theme="d" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+				<h3>Tundah unduhan</h3>
+				<p>Anda yakin </p>
+				<a href="index.html" data-role="button" data-rel="back" data-theme="b" data-icon="check" data-inline="true" data-mini="true">Buy: $10.99</a>
+				<a href="index.html" data-role="button" data-rel="back" data-inline="true" data-mini="true">Cancel</a>
+			</div>
+		</div>
+		<div data-role="collapsible">
+			<h3>Menunggu</h3>
+			<p>I'm the collapsible content for section 2</p>
+		</div>
+		<div data-role="collapsible">
+			<h3>Selesai</h3>
+			<ul data-role="listview" data-split-icon="gear" data-split-theme="d" data-inset="true">
+				{% for file in stops %}
+				<li><a href="#">
+					<h2>{{ file.namafile }}</h2>
+					<p>Broken Bells</p></a>
+					<a href="#pop_selesai" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+				</li>
+				{% endfor %}
+			</ul>
+			<div data-role="popup" id="pop_selesai" data-theme="d" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+				<h3>Tundah unduhan</h3>
+				<p>Anda yakin akan menunda unduhan ini ? </p>
+				<a href="index.html" data-role="button" data-rel="back" data-theme="a" data-inline="true" data-mini="true">Ok</a>
+				<a href="index.html" data-role="button" data-rel="back" data-inline="true" data-mini="true">Batal</a>
+			</div>
+		</div>
 	</div><!-- /content -->
 
 	{% include "mobile/footer.html" %}
@@ -56,32 +93,32 @@
 	</div><!-- /header -->
 
 	<div data-role="content">
-	    <table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" >
-         <thead>
-           <tr class="ui-bar-d">
-             <th data-priority="persist">Informasi</th>
-             <th data-priority="1">Angka</th>
-           </tr>
-         </thead>
-         <tbody>
-            <tr> 
-                <td>Unduhan Selesai</td>
-                <td>{{ stats.numStopped }}</td> 
-            </tr>
-            <tr> 
-                <td>Unduhan Tertunda</td>
-                <td>{{ stats.numWaiting }}</td> 
-            </tr>
-            <tr> 
-                <td>Unduhan Berjalan</td>
-                <td>{{ stats.numActive }}</td> 
-            </tr>
-            <tr> 
-                <td>Kecepatan Unduh</td>
-                <td>{{ stats.downloadSpeed|filesizeformat }}/s</td> 
-            </tr> 
-         </tbody>
-       </table>
+	    <table data-role="table" id="movie-table" data-mode="reflow" class="ui-responsive table-stroke">
+  <thead>
+    <tr>
+      <th data-priority="persist">Keterangan</th>
+      <th data-priority="1">Nilai</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Unduhan berjalan</th>
+      <td>74</td>
+    </tr>
+    <tr>
+      <th>Unduhan menunggu</th>
+      <td>74</td>
+    </tr>
+    <tr>
+      <th>Unduhan selesai</th>
+      <td>74</td>
+    </tr>
+    <tr>
+      <th>Total kecepatan</th>
+      <td>74</td>
+    </tr>
+  </tbody>
+</table>
 	</div><!-- /content -->
 
 	
