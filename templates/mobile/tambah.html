@@ -1,0 +1,21 @@
+{% extends "mobile/base.html" %}
+
+{% block content %}
+<form action="{% url mobile_tambah %}" method="POST">
+     {% csrf_token %}
+                    <div data-role="fieldcontain">
+                        <label for="url-1">Url unduhan</label>
+                        <input data-clear-btn="true" name="url" id="id_url" value="" type="url">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="select-native-17">Unduhan bersamaan</label>
+                        <select name="split" id="id_split">
+                            <option value="5" selected=selected >Lima</option>
+                            <option value="10">Sepuluh</option>
+                            <option value="20">Dua Puluh</option>
+                            <option value="30">Tiga Puluh</option>
+                        </select>                    
+                    </div>
+                    <input type="submit" value="Unduh" data-theme="b"/>
+                </form>
+{% endblock %}

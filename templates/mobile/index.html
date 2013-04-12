@@ -1,0 +1,40 @@
+{% extends "mobile/base.html"%}
+
+{% block content %}
+<ul data-role="listview" data-split-icon="delete" data-split-theme="d" data-inset="true" data-divider-theme="e">
+				<li data-role="list-divider">Sedang Berjalan</li>
+				{% for file in files %}
+				<li><a href="{{ file.url }}">
+					<h2>{{ file.namafile }}</h2>
+					<p>Ukuran : {{ file.totalunduh|filesizeformat }}</p></a>
+					<a href="#pop_selesai" data-rel="popup" data-position-to="window" data-transition="pop">Aksi</a>
+				</li>
+				{% endfor %}
+			</ul>
+			<ul data-role="listview" data-split-icon="delete" data-split-theme="d" data-inset="true" data-divider-theme="a">
+				<li data-role="list-divider">Sedang mengunggu</li>
+				{% for file in pauses %}
+				<li><a href="#">
+					<h2>{{ file.namafile }}</h2>
+					<p>Ukuran : {{ file.totalunduh|filesizeformat }}</p></a>
+					<a href="#pop_selesai" data-rel="popup" data-position-to="window" data-transition="pop">Aksi</a>
+				</li>
+				{% endfor %}
+			</ul>
+			<ul data-role="listview" data-split-icon="delete" data-split-theme="d" data-inset="true">
+				<li data-role="list-divider">Selesai unduh</li>
+				{% for file in stops %}
+				<li><a href="{{ file.url }}">
+					<h2>{{ file.namafile }}</h2>
+					<p>Ukuran : {{ file.totalunduh|filesizeformat }}</p></a>
+					<a href="#pop_selesai" data-rel="popup" data-position-to="window" data-transition="pop">Aksi</a>
+				</li>
+				{% endfor %}
+			</ul>
+			<div data-role="popup" id="pop_selesai" data-theme="d" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+				<h3>Hapus unduhan ?</h3>
+				<p>Anda yakin akan menghapus unduhan ini ? </p>
+				<a href="index.html" data-role="button" data-rel="back" data-theme="a" data-inline="true" data-mini="true">Ok</a>
+				<a href="index.html" data-role="button" data-rel="back" data-inline="true" data-mini="true">Batal</a>
+			</div>
+{% endblock %}

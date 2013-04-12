@@ -1,0 +1,30 @@
+{% extends "mobile/base.html" %}
+
+{% block content %}
+<table class="tablesorter" cellspacing="0"> 
+			<thead> 
+				<tr> 
+                                <th>Items</th> 
+    				<th>Value</th> 
+				</tr> 
+			</thead> 
+			<tbody>
+				<tr> 
+                                    <td>Jumlah Unduhan Selesai</td>
+    				    <td>{{ stats.numStopped }}</td> 
+    				</tr>
+                                <tr> 
+                                    <td>Jumlah Unduhan Tertunda</td>
+    				    <td>{{ stats.numWaiting }}</td> 
+    				</tr>
+                                <tr> 
+                                    <td>Jumlah Unduhan Berjalan</td>
+    				    <td>{{ stats.numActive }}</td> 
+    				</tr>
+                                <tr> 
+                                    <td>Total Kecepatan Unduh</td>
+    				    <td>{{ stats.downloadSpeed|filesizeformat }}/s</td> 
+    				</tr> 
+			</tbody> 
+			</table>
+{% endblock %}
