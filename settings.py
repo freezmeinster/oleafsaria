@@ -14,8 +14,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'nitipunduh.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -108,7 +108,14 @@ TEMPLATE_DIRS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-     'django.contrib.messages.context_processors.messages',
+     "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    'django.core.context_processors.request',
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages"
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
@@ -120,8 +127,9 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'download'
-    ,
+    'download',
+    'gunicorn',
+    'akun'
 )
 
 # A sample logging configuration. The only tangible logging
@@ -152,8 +160,10 @@ LOGGING = {
         },
     }
 }
+LOGIN_URL= "/download/login"
 
-ARIA_RPC_URL = "http://bram:pass4bram@103.23.244.131:6800/rpc"
+ARIA_RPC_URL = ""
+#ARIA_RPC_URL = "http://bram:pass4bram@103.23.244.131:6800/rpc"
 ARIA_URL_PATH = "http://nitipunduh.kedaiko.de"
 ARIA_REPO_URL = "http://opensource.indoschool.org/nitip/download/"
 ARIA_REPO_PATH = "/home/personal/bram/nitip/download/"

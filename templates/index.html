@@ -31,72 +31,76 @@
 		          }    
 		     }
 		</script>
-		<article class="module width_full">
-		<header><h3 class="tabs_involved">Sedang Mengunduh</h3></header>
-			<table class="tablesorter" cellspacing="0"> 
-			<thead> 
-				<tr> 
-                                <th>Nama File</th> 
-    				<th>Ukuran Total</th> 
-    				<th>Berhasil Unduh</th> 
-    				<th>Kecepatan Unduh</th> 
-    				<th>Aksi</th> 
-				</tr> 
-			</thead> 
-			<tbody>
+		<h3>Unduh berjalan</h3>
+		<div class="well">
+		<table class="table table-striped table-bordered ">
+		     <thead>
+			     <tr>
+				     <th>Nama File</th>
+				     <th>Ukuran File</th>
+				     <th>Proses</th>
+				     <th>Kecepatan unduh</th>
+				     <th>Aksi</th>
+			     </tr>
+		     </thead>
+		     <tbody>
                             {% for file in files %}
 				<tr> 
                                     <td>{{ file.namafile }}</td>
     				    <td>{{ file.totalunduh|filesizeformat}}</td> 
-    				    <td>{{ file.berhasilunduh|filesizeformat}}</td> 
+    				    <td style="width: 30%;"><div class="progress progress-striped active">
+					  <div class="bar " style="width: {{ file.process }}%;">&nbsp;</div>
+									</div></td> 
     				    <td>{{ file.kecepatanunduh|filesizeformat}}/s</td>
 				    <td>
-					<input type="image" title="Trash" src="/static/images/icn_logout.png" onclick="hentiDownload('{{ file.gid }}')"></td>
+					<a class="btn btn-warning"  onclick="hentiDownload('{{ file.gid }}')">Hentikan</a></td>
     				    </tr> 
 			    {% endfor %} 
 			</tbody> 
 			</table>
-                </article>
-	       <article class="module width_full">
-		<header><h3 class="tabs_involved">Unduhan Menungu</h3></header>
-			<table class="tablesorter" cellspacing="0"> 
-			<thead> 
-				<tr> 
-                                <th>Nama File</th> 
-    				<th>Ukuran Total</th> 
-    				<th>Berhasil Unduh</th> 
-    				<th>Aksi</th> 
-				</tr> 
-			</thead> 
-			<tbody>
+		</div>
+		<h3 class="tabs_involved">Unduhan Menungu</h3>
+                <div class="well">
+			<table class="table table-striped table-bordered ">
+		     <thead>
+			     <tr>
+				     <th>Nama File</th>
+				     <th>Ukuran File</th>
+				     <th>Terunduh</th>
+				     <th>Aksi</th>
+			     </tr>
+		     </thead>
+		     <tbody>
                             {% for file in pauses %}
 				<tr> 
                                     <td>{{ file.namafile }}</td>
     				    <td>{{ file.totalunduh|filesizeformat}}</td> 
     				    <td>{{ file.berhasilunduh|filesizeformat}}</td> 
 				    <td>
-					<input type="image" title="Mulai" src="/static/images/icn_jump_back.png" onclick="mulaiDownload('{{ file.gid }}')">
-					<input type="image" title="Mulai" src="/static/images/icn_logout.png" onclick="batalDownload('{{ file.gid }}')">
+					<a class="btn btn-success" onclick="mulaiDownload('{{ file.gid }}')">Mulai</a>
+					<a class="btn btn-danger" onclick="batalDownload('{{ file.gid }}')">Hapus</a>
 				    </td>
     				    </tr> 
 			    {% endfor %} 
 			</tbody> 
 			</table>
-                </article>
-			<article class="module width_full">
-		        <header><h3 class="tabs_involved">Unduhan Selesai</h3></header>
-			<table class="tablesorter" cellspacing="0"> 
-			<thead> 
-				<tr> 
-    				<th>Unduh File</th> 
-    				<th>Ukuran</th>
-				<th>Aksi</th>
-				</tr> 
-			</thead> 
-			<tbody> 
+			</div>
+               <h3 class="tabs_involved">Unduhan Selesai</h3>
+		     <div class="well">
+			<table class="table table-striped table-bordered ">
+		     <thead>
+			     <tr>
+				     <th>Nama File</th>
+				     <th>Url Unduh</th>
+				     <th>Ukuran File</th>
+				     <th>Aksi</th>
+			     </tr>
+		     </thead>
+		     <tbody>
 				{% for file in stops %}
 				<tr> 
-                                    <td><a href="{{ file.url }}">{{ file.namafile }}</a></td>
+                                    <td>{{ file.namafile }}</td>
+				    <td>{% if file.totalunduh == 0 %}<a class="btn btn-error disabled">Gagal Unduh</a>{% else %}<a class="btn btn-success" href="{{ file.url }}">Unduh file</a>{% endif %}</td>
     				    <td>{{ file.totalunduh|filesizeformat}}</td>
 				    <td>{% if file.totalunduh == 0 %}
 					<input type="image" title="Delete" src="/static/images/icn_trash.png" onclick="hapusFile('{{ file.gid }}','{{ file.namafile }}')">{% endif %}
@@ -106,7 +110,41 @@
 				
 			</tbody> 
 			</table>
-		</article><!-- end of content manager article -->
-		
+		     </div>
+		<div class="modal hide fade" id="myModal">
+			<div class="modal-header">
+				<a class="close" data-dismiss="modal">&times;</a>
+				<h3>Modal Dialog</h3>
+			</div>
+			<div class="modal-body">
+				<p>
+			    <form action="{% url tambah %}" method="POST" class="well form-horizontal">
+			    <fieldset>
+			    {% csrf_token %}
+			    <div class="control-group">
+			    <label for="input01" class="control-label">Koneksi bersamaan</label>
+			    <div class="controls">
+				    <select class="span2" name="split">
+					    <option value=5 >5</option>
+					    <option value=10 >10</option>
+					    <option value=15 >15</option>
+					    <option value=20 >20</option>
+				    </select>
+			    </div>
+		    </div>
+		    <div class="control-group">
+			    <label for="input01" class="control-label">Url unduhan</label>
+			    <div class="controls">
+				    <textarea name="url"></textarea>
+			    </div>
+		    </div>
+			    </fieldset>
+				</p>
+			</div>
+			<div class="modal-footer">
+				<a href="/" class="btn" data-dismiss="modal">Cancel</a>
+				<button class="btn btn-success" type="submit">Unduh</button>
+			</div>
+		</div>
 		
 {% endblock %}

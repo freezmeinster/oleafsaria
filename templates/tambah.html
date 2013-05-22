@@ -6,10 +6,12 @@
         <h4 class="alert_error">{{ message }}</h4>
         {% endfor %}
     {% endif %}
-<article class="module width_full">
-    <form action="" method="POST">
+    <div class="span6">
+        <h3>Tambah URL Unduhan</h3>
+    <form action="" method="POST" class="well form-horizontal">
+        <fieldset>
         {% csrf_token %}
-    <header><h3>Tambah URL Unduhan</h3></header>
+   
             <div class="module_content">
                             <fieldset style="width:60%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
                                     <label>URL</label>
@@ -20,11 +22,10 @@
                                     <div style="width: 89%;">{{ form.split }}</div>
                             </fieldset><div class="clear"></div>
             </div>
-    <footer>
             <div class="submit_link">
                     <input type="submit" class="alt_btn" value="Kirim">
             </div>
-    </footer>
+        </fieldset>
     </form>
-</article>
+    </div>
 {% endblock %}

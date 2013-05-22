@@ -7,5 +7,6 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     url(r'^$', 'download.views.home', name='home'),
     url(r'^download/', include("download.urls")),
+    url(r'^akun/', include("akun.urls")),
     url(r'^mobile/', include("mobile.urls")),
 )

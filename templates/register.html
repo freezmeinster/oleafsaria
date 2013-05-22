@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+<!-- Mirrored from wbpreview.com/previews/WB0087188/register.html by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 21 Apr 2013 17:31:14 GMT -->
+<head>
+		<title>Aqueena Template</title>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="/static/css/style.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<!-- Le fav and touch icons -->
+		<link rel="shortcut icon" href="/static/ico/favicon.ico">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/ico/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/ico/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="/static/ico/apple-touch-icon-57-precomposed.png">
+	</head>
+	<body>
+		<div id="login">
+			<h3>Registration</h3>
+                       
+			<form action="" method="POST">
+                            {% if messages %}
+					{% for message in messages %}
+					<div class="alert alert-{{ message.tags }}">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						
+							{{ message }}
+                                                        </div>
+					{% endfor %}
+					{% endif %}
+                            {% csrf_token %}
+				<fieldset>
+                                    <div class="control-group">
+						<label class="control-label" for="user_name">Nama Lengkap</label>
+						<div class="controls">
+							<input type="text" name="name" value="" id="user_name"  />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="user_name">Nama pengguna</label>
+						<div class="controls">
+							<input type="text" name="username" value="" id="user_name"  />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="email">Alamat Email</label>
+						<div class="controls">
+							<input type="text" name="email" value="" id="email"  />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="password">Kata sandi</label>
+						<div class="controls">
+					      <input type="password" name="password" value="" id="password"  />
+						</div>
+					</div>
+				</fieldset>
+				<div class="alert alert-info">
+						By Pressing the "I Accept" button you agree to the terms and conditions of the "Subscription and Lisence Agreement".
+				</div>	
+				<hr/>
+				<div class="pull-right">
+					<a href="/" class="btn">
+						Batal
+					</a>
+					<button type="submit" name="submit" value="login" class="btn btn-warning">
+						Daftar
+					</button>
+				</div>
+			</form>
+			Put Your Copyright Here &copy; 2012
+		</div>
+		<script src="/static/js/jquery.js"></script>
+		<script src="/static/js/bootstrap-alert.js"></script>
+	</body>
+
+<!-- Mirrored from wbpreview.com/previews/WB0087188/register.html by HTTrack Website Copier/3.x [XR&CO'2010], Sun, 21 Apr 2013 17:31:14 GMT -->
+</html>
+
