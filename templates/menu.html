@@ -7,7 +7,7 @@
 								<a class="popup" href="#myModal" data-toggle="modal">Tambah Unduhan</a>
 							</li>
                                                         <li>
-								<a href="{% url tentang %}">Tentang saya</a>
+								<a href="{% url 'tentang' %}">Tentang saya</a>
 							</li>
 							{% endif %}
 						</ul>
@@ -17,20 +17,20 @@
 								<a data-toggle="dropdown" class="dropdown-toggle " href="#">Selamat Datang {{ request.user.get_full_name }} <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li>
-										<a href="{% url akun_profile %}"><i class="icon-user"></i> Pengaturan Profile</a>
+										<a href="{% url 'akun_profile' %}"><i class="icon-user"></i> Pengaturan Profile</a>
 									</li>
                                                                         
 									<li>
-										<a href="{% url akun_ganti_password %}"><i class="icon-lock"></i> Ganti Password</a>
+										<a href="{% url 'akun_ganti_password' %}"><i class="icon-lock"></i> Ganti Password</a>
 									</li>
 									<li class="divider"></li>
 									{% if request.user.is_superuser  %}
                                                                         <li>
-										<a href="{% url akun_list %}"><i class="icon-user"></i> Manajemen Pengguna</a>
+										<a href="{% url 'akun_list' %}"><i class="icon-user"></i> Manajemen Pengguna</a>
 									</li>
                                                                         {% endif %}
                                                                         <li>
-										<a href="{% url logout %}"><i class="icon-off"></i> Keluar</a>
+										<a href="{% url 'logout' %}"><i class="icon-off"></i> Keluar</a>
 									</li>
 								</ul>
 							</li>

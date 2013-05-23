@@ -1,6 +1,6 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
-from django.contrib.admin.models import User
 
 def akun_profile(request):
     user = User.objects.get(id=request.user.id)
