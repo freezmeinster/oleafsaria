@@ -42,7 +42,7 @@ def home(request):
                         "namafile" : nama_file,
                         "gid" : file.get("gid"),
                         "totalunduh" : file.get("totalLength"),
-                        "process" : float(file.get("completedLength")) / float(file.get("totalLength")) * 100,
+                        "process" : (float(file.get("completedLength")) + 1) / (float(file.get("totalLength")) +1) * 100,
                         "berhasilunduh" : file.get("completedLength"),
                         "kecepatanunduh" : file.get("downloadSpeed"),
                     }
