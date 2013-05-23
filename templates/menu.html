@@ -2,12 +2,14 @@
 							<li class="active">
 								<a href="/">Dashboard</a>
 							</li>
+							{% if xmlrpc %}
 							<li>
 								<a class="popup" href="#myModal" data-toggle="modal">Tambah Unduhan</a>
 							</li>
                                                         <li>
 								<a href="{% url tentang %}">Tentang saya</a>
 							</li>
+							{% endif %}
 						</ul>
 						<ul class="nav pull-right">
 							<li class="divider-vertical"></li>

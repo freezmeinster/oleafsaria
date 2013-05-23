@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="span6">
+    <form class="well form-horizontal" method="POST" action="">
+        {% csrf_token %}
+            <fieldset>
+                    <div class="control-group">
+                            <label class="control-label" for="input01">Nama panjang</label>
+                            <div class="controls">
+                                    <input type="text" value="{{ user.get_full_name }}" class="input-xlarge" name="name">
+                            </div>
+                    </div>
+                    <div class="control-group">
+                            <label class="control-label" for="optionsCheckbox">Alamat Email</label>
+                            <div class="controls">
+                                    <div class="input-append">
+                                            <input type="text" value="{{ user.email }}" class="input-xlarge" name="email">
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="form-actions">
+                            <button class="btn" type="reset">
+                                    Reset
+                            </button>
+                            <button type="submit" class="btn btn-warning">
+                                    Ganti
+                            </button>
+                    </div>
+            </fieldset>
+    </form>
+						</div>
+{% endblock %}

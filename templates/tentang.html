@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 
 {% block main %}
-<article class="module width_quarter">
-	<header><h3>Status Server</h3></header>
-        <table class="tablesorter" cellspacing="0"> 
+<table class="table table-striped table-bordered ">
 			<thead> 
 				<tr> 
                                 <th>Items</th> 
@@ -31,13 +29,10 @@
 			</table>
 
 </article>	
-<article class="module width_3_quarter">
-        <header><h3>Tentang Saya</h3></header>
-                <div class="module_content">
+<div class="well btn-info">
                         <p>Saya adalah sebuah interface web yang bertujuan untuk memanipulasi aplikasi aria2. Dibangun menggunakan Django dan xmlrpclib</p>
                         <p>Versi alfa ini ditujukan untuk keperluan uji coba saja. Saya belum dapat di gunakan untuk produksi.</p>
                         <p>Masukan dan saran dapat di kirimkan ke say@bramandityo.com</p>
                 </div>
-</article>
 	
 {% endblock %}

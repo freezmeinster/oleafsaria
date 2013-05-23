@@ -115,7 +115,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     'django.core.context_processors.request',
     "django.core.context_processors.tz",
-    "django.contrib.messages.context_processors.messages"
+    "django.contrib.messages.context_processors.messages",
+    "request_processor.test_xmlrpc"
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
@@ -162,8 +163,8 @@ LOGGING = {
 }
 LOGIN_URL= "/download/login"
 
-ARIA_RPC_URL = ""
-#ARIA_RPC_URL = "http://bram:pass4bram@103.23.244.131:6800/rpc"
+#ARIA_RPC_URL = ""
+ARIA_RPC_URL = "http://bram:pass4bram@103.23.244.131:6800/rpc"
 ARIA_URL_PATH = "http://nitipunduh.kedaiko.de"
-ARIA_REPO_URL = "http://opensource.indoschool.org/nitip/download/"
+ARIA_REPO_URL = "http://nitipunduh.kedaiko.de/data/"
 ARIA_REPO_PATH = "/home/personal/bram/nitip/download/"

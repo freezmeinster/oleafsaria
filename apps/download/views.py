@@ -2,6 +2,7 @@ import re
 import xmlrpclib
 from django.shortcuts import render_to_response, redirect
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.models import User
 from django.conf import settings
 from download.models import Unduhan
 from django.template import RequestContext
@@ -147,35 +148,41 @@ def daftar(request):
         data = request.POST.copy()
         try:
             user = User.objects.create_user(
-                username = data.get('username')
+                username = data.get('username'),
+                email = data.get("email")
             )
             user.save()
             user.set_password(data.get('password'))
             user.first_name = data.get('name')
             user.save()
             messages.success(request,"Pengguna %s berhasil didaftarkan" % data.get('name'))
+        except ValueError :
+            messages.error(request,"Lengkapi form yang ada !")
         except :
-            messages.info(request,"Pengguna %s telah terdaftar" % data.get('name'))
+            messages.warning(request,"Pengguna %s sudah pernah mendaftar" % data.get('name'))
+            
     return  render_to_response('register.html',{
     },context_instance=RequestContext(request))
 
 
 def login_page(request):
-    data = request.POST.copy()
-    username = data.get("username")
-    password = data.get("password")
-    print data
-    user = authenticate(username=username,password=password)
-    print user
-    if user != None :
-        if user.is_active :
-            login(request,user)
-            return redirect("/")
+    if request.method == 'POST':
+        data = request.POST.copy()
+        username = data.get("username")
+        password = data.get("password")
+        print data
+        user = authenticate(username=username,password=password)
+        print user
+        if user != None :
+            if user.is_active :
+                login(request,user)
+                return redirect("/")
+            else :
+                messages.error(request, "Nama pengguna tidak aktif")
+    
         else :
-            messages.error(request, "User anda tidak aktif")
-            return redirect("/")
-    else :
-        messages.error(request, "User yang anda masukan tidak terdaftar")
+            messages.error(request, "Nama pengguna yang anda masukan tidak terdaftar atau password anda salah")
+        
     return render_to_response("login.html",{
         },context_instance=RequestContext(request))
 

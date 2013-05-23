@@ -36,9 +36,12 @@
 		<div class="container">
 			<div class="row-fluid">
 				<div class="span12">
-					<div class="page-header">
-						<h3>Dashboard</h3>
+					{% if not xmlrpc %}
+					<div class="alert alert-error">
+						Koneksi dengan server pengunduh sedang terganggu. Anda tidak dapat melanjutkan kegiatan mengunduh.
 					</div>
+					{% endif %}
+					
 					<div class="row-fluid">
 						{% block main %}{% endblock %}
 					</div>
@@ -48,7 +51,7 @@
 			<hr/>
 			<footer>
 				<p>
-					Put Your Copyright Here &copy; 2012
+					Copyright Oleafs Integrasi Mandiri &copy; 2013
 				</p>
 			</footer>
 

@@ -9,21 +9,23 @@
 										<th>Nama</th>
 										<th>Total Unduh</th>
 										<th>Email</th>
-										<th>username</th>
+                                                                                <th>username</th>
+										<th>Aktif</th>
 										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>{% for u in user %}
 									<tr>
 										<td>{{ u.get_full_name }}</td>
-										<td><i class="icon-file"></i> Invoice #1 </td>
+										<td></td>
 										<td>{{ u.email }}</td>
 										<td>{{ u.username }}</td>
+                                                                                <td>{% if u.is_active %}<a class="btn btn-danger" href="{% url akun_bekukan u.id %}">Matikan</a>{% else%}<a class="btn btn-success" href="{% url akun_cairkan u.id %}">Aktifkan</a>{% endif %}</td>
 										<td width="15%">
 										<div class="btn-group">
 											<a href="#" class="tooltip-top btn" title="Ubah"><i class="icon-edit"></i></a>
                                                                                         <a href="#" class="tooltip-top btn" title="Ubah Sandi"><i class="icon-user"></i></a>
-											<a href="#" class="tooltip-top btn" title="Hapus"><i class="icon-remove"></i></a>
+											<a href="{% url akun_hapus u.id %}" class="tooltip-top btn" title="Hapus"><i class="icon-remove"></i></a>
 										</div></td>
 									</tr>{% endfor %}
 									
